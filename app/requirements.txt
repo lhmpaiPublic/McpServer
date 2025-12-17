@@ -1,0 +1,9 @@
+fastapi
+uvicorn[standard]
+django-cors-headers
+sqlalchemy
+redis
+python-dotenv
+jinja2
+pymysql
+cryptography
