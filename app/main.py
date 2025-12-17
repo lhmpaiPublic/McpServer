@@ -7,7 +7,7 @@ from fastapi.templating import Jinja2Templates
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
-from mcp.server import mcp
+from mcp.server import router as mcp_router
 
 # .env 파일 로드
 load_dotenv()
@@ -34,8 +34,8 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 app.mount("/assets", StaticFiles(directory="static/assets"), name="assets")
 # app.mount("/src", StaticFiles(directory="static/src"), name="src")
 
-# MCP mount
-app.mount("/mcp", mcp)
+# MCP
+app.include_router(mcp_router, prefix="/mcp")
 
 # app.include_router(ai_router, prefix="/ai", tags=["AI"])
 

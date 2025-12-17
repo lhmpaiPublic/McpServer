@@ -6,6 +6,7 @@ services:
     container_name: mcp_fastapi
     ports:
       - "${APP_PORT}:8000"
+      - "5678:5678"
     volumes:
       - "${GIT_PATH}/app:/app"
     env_file:
@@ -29,7 +30,7 @@ services:
       - "${MYSQL_PORT}:3306"
     volumes:
       - "${GIT_PATH}/dbvolume/mysql:/var/lib/mysql"
-      - "${SQL_PATH}:/docker-entrypoint-initdb.d"
+     # - "${SQL_PATH}:/docker-entrypoint-initdb.d"
 
   redis:
     image: redis:7.2

@@ -7,6 +7,8 @@ _data/mysql/*
 # # 상위 폴더는 추적
 # !_data/mysql/
 
+dbvolume/*
+
 # # ibdata1, undo_001, undo_002, ibtmp1는 추적
 # !_data/mysql/ibdata1
 # !_data/mysql/undo_001

@@ -1,16 +1,15 @@
-from mcp.server.fastapi import FastMCP
+from fastapi import APIRouter, HTTPException
+from mcp.tools import get_user
 
-mcp = FastMCP("docker-mcp-server")
+router = APIRouter()
 
-@mcp.tool()
-def get_user(user_id: int):
-    """Get user info from database"""
-    return {"user_id": user_id, "name": "Alice"}
+@router.post("/tool/get_user")
+async def get_user_tool(payload: dict):
+    user_id = payload.get("user_id")
 
-@mcp.resource("mysql://users")
-def users_resource():
-    return "User table resource"
+    if user_id is None:
+        raise HTTPException(status_code=400, detail="user_id is required")
 
-@mcp.prompt()
-def user_summary(name: str):
-    return f"Summarize information about user {name}"
+    return get_user(user_id)
+
+
